@@ -184,7 +184,9 @@ Terraform sources their providers and modules from the Terraform Registry, which
 - **Providers** are interfaces to APIs that will allow you to create resources using Terraform
 - **Modules** are a way to make a large amount of Terraform code module, portable, and shareable. 
 
-[random Terraform provider](https://registry.terraform.io/providers/hashicorp/random/)
+Providers used in this project: 
+- [Terraform random provider](https://registry.terraform.io/providers/hashicorp/random/)
+- [Terraform AWS provider](https://registry.terraform.io/providers/hashicorp/aws/).
 
 ### Terraform Console
 
@@ -208,17 +210,22 @@ This will run a plan and pass the changeset to be executed by Terraform. Apply s
 
 To automatically approve without prompting, provide the `--auto-approve` flag, e.g `terraform apply --auto-approve`
 
-### Terraform Lock Files
+#### Terraform Destroy
+
+`terraform destroy`
+This destroys resources. 
+
+You can also use the `--auto-approve` flag to skip the approval prompt (e.g. `terraform destroy --auto-approve`).
+
+#### Terraform Lock Files
 
 `.terraform.lock.hcl` contains the locked versioning for the providers and modules being used with the project. This file **should be** committed to your version control system (VCS), e.g. GitHub. 
 
-### Terraform State Files
+#### Terraform State Files
 
 `.terraform.tfstate` contains information about the current state of your infrastructure. This file **should not** be committed. This file can contain sensitive data. If you lose this file, you lose knowing the state of your infrastructure. This file **should not** be manually edited. 
 
-### Terraform Directory
+#### Terraform Directory
 
 `.terraform` directory contains binaries of Terraform providers, among other things. 
-
-
 
