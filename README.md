@@ -233,7 +233,7 @@ You can also use the `--auto-approve` flag to skip the approval prompt (e.g. `te
 
 When attempting to run `terraform login`, it will launch in bash a WYSIWYG view to generate a token. However, it does not work as expected in Gitpod VSCode in the browser. 
 
-After opening the link to generate a Terraform Cloud token, you may quit the WYSIWYG view by pressing `q`. I entered the authentication token when prompted, and it was written to `/home/gitpod/.terraform.d/credentials.tfrc.json` as expected.
+After opening the link to generate and copy the Terraform Cloud token, you may return to the terminal and quit the WYSIWYG view by pressing `q`. I entered the authentication token when prompted, and it was written to `/home/gitpod/.terraform.d/credentials.tfrc.json` as expected.
 
 ```json
 {
@@ -244,3 +244,6 @@ After opening the link to generate a Terraform Cloud token, you may quit the WYS
   }
 }
 ```
+
+We have automated the process of creating the TFRC credentials file using a workaround wiwth the following bash script: [bin/generate_tfrc_credentials](bin/generate_tfrc_credentials). 
+
