@@ -229,3 +229,18 @@ You can also use the `--auto-approve` flag to skip the approval prompt (e.g. `te
 
 `.terraform` directory contains binaries of Terraform providers, among other things. 
 
+## Issues with Terraform Cloud login and Gitpod Workspace
+
+When attempting to run `terraform login`, it will launch in bash a WYSIWYG view to generate a token. However, it does not work as expected in Gitpod VSCode in the browser. 
+
+After opening the link to generate a Terraform Cloud token, you may quit the WYSIWYG view by pressing `q`. I entered the authentication token when prompted, and it was written to `/home/gitpod/.terraform.d/credentials.tfrc.json` as expected.
+
+```json
+{
+  "credentials": {
+    "app.terraform.io": {
+      "token": "EXAMPLE-TERRAFORM-CLOUD-TOKEN"
+    }
+  }
+}
+```
