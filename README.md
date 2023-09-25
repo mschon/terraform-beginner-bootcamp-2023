@@ -4,7 +4,7 @@
 
 ## Weekly Journals
 
-- [Week 0 Journal](journal/week0/README.md)
+- [Week 0 Journal](journal/week0.md)
 
 ## Extras
 
