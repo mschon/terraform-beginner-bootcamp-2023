@@ -73,3 +73,41 @@ If you lose your state file, you most likely have to tear down your cloud infras
 Scenario: If someone deletes or modifies cloud resources manually through clickops (i.e. without using terraform).
 
 If we run `tf plan`, we can attempt to put our infrastructure back into the expected state. 
+
+## Fix using Terraform Refresh
+
+```sh
+tf apply -refresh-only -auto-approve
+```
+
+## Terraform modules
+
+### Terraform Module Structure
+
+It is recommended to place modules in a `modules` directory when locally developing modules, but you can name it whatever you like. 
+
+### Passing Input Variables
+
+We can pass input variables to our module. 
+
+The module must declare these Terraform variables in its own `variables.tf`. 
+
+```tf
+module "terrahouse_aws" {
+  source = "./modules/terrahouse_aws"
+  user_uuid = var.user_uuid
+  bucket_name = var.bucket_name
+}
+```
+
+### Modules sources
+
+Using the source, we can import the module from various plages, e.g. 
+- locally
+- GitHub
+- Terraform Registry
+
+
+
+[Modules Sources](https://developer.hashicorp.com/terraform/language/modules/sources)
+
