@@ -107,7 +107,37 @@ Using the source, we can import the module from various plages, e.g.
 - GitHub
 - Terraform Registry
 
-
-
 [Modules Sources](https://developer.hashicorp.com/terraform/language/modules/sources)
 
+## Considerations when using ChatGPT to write Terraform
+
+LLMs such as ChatGPT may not be trained on the latest documentation or information about Terraform. 
+
+It may produce outdated examples that could be deprecated. This often affects Terraform providers which can change at a more frequent pace than Terraform itself. 
+
+## Working with Files in Terraform
+
+### fileexists function
+
+[`fileexists()`](https://developer.hashicorp.com/terraform/language/functions/fileexists) is a built-in Terraform function to check for the existence of a file. 
+
+### filemd5 function
+
+[`filemd5()`](https://developer.hashicorp.com/terraform/language/functions/filemd5) is a built-in Terraform function that generates an MD5 hash from a file. 
+
+### Path Variable
+
+In Terraform, there is a special variable called `path` that allows us to reference local paths. 
+- `path.module` - get the path for the current module
+- `path.root` - get the path for the root module
+
+[Special Path Variable](https://developer.hashicorp.com/terraform/language/expressions/references#filesystem-and-workspace-info)
+
+```
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_object
+resource "aws_s3_object" "index_html" {
+  bucket = aws_s3_bucket.website_bucket.bucket
+  key    = "index.html"
+  source = ${path.root}/public/index.html
+}
+```
