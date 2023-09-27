@@ -34,6 +34,10 @@ resource "aws_s3_object" "index_html" {
   source = var.index_html_filepath
   content_type = "text/html"
   etag = filemd5(var.index_html_filepath)
+  lifecycle {
+    replace_triggered_by = [ terraform_data.content_version.output ]
+    ignore_changes = [etag]
+  }
 }
 
 #https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_object
@@ -67,4 +71,8 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
       }
     }
   })
+}
+
+resource "terraform_data" "content_version" {
+  input = var.content_version
 }
