@@ -267,3 +267,14 @@ resource "aws_instance" "web" {
 }
 ```
 
+## for expressions
+
+[`for` expressions](https://developer.hashicorp.com/terraform/language/expressions/for) allow us to enumerate over complex data types. 
+
+Example:
+```
+[for s in var.list : upper(s)]
+```
+
+This is mostly useful when you are creating multiples of a cloud resource and you want to reduce the amount of repetitive Terraform code. 
+
