@@ -11,7 +11,6 @@ import (
 	"net/http"
 	"fmt"
 	"log"
-
 	"github.com/google/uuid"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -283,10 +282,12 @@ func resourceHouseUpdate(ctx context.Context, d *schema.ResourceData, m interfac
 	d.Set("name", payload["name"])
 	d.Set("description", payload["description"])
 	d.Set("content_version", payload["content_version"])
+
 	return diags
 }
 
 func resourceHouseDelete(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics{
+
 	log.Print("resourceHouseDelete:start")
 	var diags diag.Diagnostics
 	config := m.(*Config)
