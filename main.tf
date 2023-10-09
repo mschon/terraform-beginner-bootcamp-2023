@@ -49,7 +49,7 @@ resource "terratowns_home" "home_upper_peninsula" {
 Michigan's Upper Peninsula is a great place to enjoy the outdoors. This is a collection of places to visit. 
   DESCRIPTION
   domain_name = module.home_upper_peninsula_hosting.domain_name
-  town = "missingo"
+  town = "the-nomad-pad"
   content_version = var.upper_peninsula.content_version
 }
 
@@ -66,6 +66,6 @@ resource "terratowns_home" "home_sausage" {
 How to make homemade winter sausage. 
   DESCRIPTION
   domain_name = module.home_sausage_hosting.domain_name
-  town = "missingo"
+  town = "cooker-cove"
   content_version = var.sausage.content_version
 }
