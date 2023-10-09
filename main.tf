@@ -14,27 +14,19 @@ terraform {
   #    name = "terra-house-1"
   #  }
   #}
-  #cloud {
-  #  organization = "mschonert"
-  #  workspaces {
-  #    name = "terra-house-1"
-  #  }
-  #}
+
+  cloud {
+    organization = "mschonert"
+    workspaces {
+      name = "terra-house-1"
+    }
+  }
 }
 
 provider "terratowns" {
   endpoint = var.terratowns_endpoint
   user_uuid = var.teacherseat_user_uuid
   token = var.terratowns_access_token # do not commit token to repo!
-}
-
-module "terrahouse_aws" {
-  source = "./modules/terrahouse_aws"
-  user_uuid = var.teacherseat_user_uuid
-  index_html_filepath = var.index_html_filepath
-  error_html_filepath = var.error_html_filepath
-  content_version = var.content_version
-  assets_path = var.assets_path
 }
 
 # available towns:
@@ -44,12 +36,36 @@ module "terrahouse_aws" {
 # - the-nomad-pad
 # - gamers-grotto
 
-resource "terratowns_home" "home" {
+module "home_upper_peninsula_hosting" {
+  source = "./modules/terrahome_aws"
+  user_uuid = var.teacherseat_user_uuid
+  public_path = var.upper_peninsula.public_path
+  content_version = var.upper_peninsula.content_version
+}
+
+resource "terratowns_home" "home_upper_peninsula" {
   name = "Places to visit in Michigan's Upper Peninsula"
   description = <<DESCRIPTION
 Michigan's Upper Peninsula is a great place to enjoy the outdoors. This is a collection of places to visit. 
   DESCRIPTION
-  domain_name = module.terrahouse_aws.cloudfront_url
+  domain_name = module.home_upper_peninsula_hosting.domain_name
   town = "missingo"
-  content_version = 1
+  content_version = var.upper_peninsula.content_version
+}
+
+module "home_sausage_hosting" {
+  source = "./modules/terrahome_aws"
+  user_uuid = var.teacherseat_user_uuid
+  public_path = var.sausage.public_path
+  content_version = var.sausage.content_version
+}
+
+resource "terratowns_home" "home_sausage" {
+  name = "Winter sausage recipe"
+  description = <<DESCRIPTION
+How to make homemade winter sausage. 
+  DESCRIPTION
+  domain_name = module.home_sausage_hosting.domain_name
+  town = "missingo"
+  content_version = var.sausage.content_version
 }

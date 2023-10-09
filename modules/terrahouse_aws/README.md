@@ -1,4 +1,0 @@
-# Terrahouse AWS module
-
-TBD
-

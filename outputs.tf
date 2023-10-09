@@ -1,14 +1,14 @@
 output "bucket_name" {
   description = "Bucket name for our static website hosting"
-  value = module.terrahouse_aws.bucket_name
+  value = module.home_upper_peninsula_hosting.bucket_name
 }
 
 output "website_endpoint" {
   description = "S3 static website hosting endpoint"
-  value = module.terrahouse_aws.website_endpoint
+  value = module.home_upper_peninsula_hosting.website_endpoint
 }
 
-output "cloudfront_url" {
-  description = "CloudFront distribution URL"
-  value = module.terrahouse_aws.cloudfront_url
+output "domain_name" {
+  description = "Domain name, i.e. CloudFront distribution URL"
+  value = module.home_upper_peninsula_hosting.domain_name
 }
