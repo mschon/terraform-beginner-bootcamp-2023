@@ -53,11 +53,15 @@ bundle exec ruby server.rb
 
 All of the code for our server is stored in the `server.rb` file. 
 
-## CRUD
+## Custom Terraform provider
 
-Terraform provider resources utilize CRUD
+Our custom Terraform provider is written in [Go](https://go.dev/).
 
-CRUD stands for create, read, update, delete.
+To build the provider, run `./bin/build_provider`. The first time it's executed takes about a minute, but if you make changes and run it again, it should just take a few seconds. 
 
-https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
+After rebuilding the provider, it's usually a good idea to run `tf init` again. 
+
+### CRUD
+
+The Terraform provider resources utilize [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete), which stands for create, read, update, delete.
 
